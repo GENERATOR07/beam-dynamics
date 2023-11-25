@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import CSVReader from "react-csv-reader";
 import {
   Dialog,
@@ -12,22 +12,30 @@ import {
   prepareFileSummary,
   prepareRoosterTableData,
 } from "@/helper/fileHelper";
+import { RosterContext } from "@/context/rosterContext";
 export default function TeamImporterDialog() {
   const [tableData, setTableData] = useState();
   const [fileSummary, setFileSummary] = useState<any>();
   const [err, setError] = useState<string>("");
+  const { setRoster } = useContext(RosterContext);
 
   const handelFileUpload = (data: any) => {
     try {
       const tableData = prepareRoosterTableData(data);
-      console.log(tableData);
+
       const fileSummary = prepareFileSummary(tableData);
-      console.log(fileSummary);
+
       setFileSummary(fileSummary);
+      setTableData(tableData);
       setError("");
     } catch (err: any) {
       setError(err.message);
     }
+  };
+
+  const handelImport = () => {
+    setRoster(tableData);
+    setTableData(undefined);
   };
   return (
     <Dialog>
@@ -40,9 +48,9 @@ export default function TeamImporterDialog() {
         <CSVReader onFileLoaded={handelFileUpload} />
         {err === "" ? <span>File must me in .csv format</span> : null}
         {err === "" ? (
-          <table className="text-sm text-white">
+          <table className="text-sm text-white w-full flex flex-col gap-2">
             <thead>
-              <tr>
+              <tr className="w-full flex justify-evenly">
                 <th>Total Players</th>
                 <th>Goalkeepers</th>
                 <th>Defenders</th>
@@ -51,7 +59,7 @@ export default function TeamImporterDialog() {
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr className="w-full flex justify-evenly ">
                 <td>{fileSummary?.TotalPlayers}</td>
                 <td>{fileSummary?.Goalkeeper}</td>
                 <td>{fileSummary?.Defender}</td>
@@ -66,6 +74,9 @@ export default function TeamImporterDialog() {
             <span className="p-2 text-xs">{err}</span>
           </div>
         )}
+        <button className="bg-Appprimary p-2" onClick={handelImport}>
+          Import
+        </button>
       </DialogContent>
     </Dialog>
   );

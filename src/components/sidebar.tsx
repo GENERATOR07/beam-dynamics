@@ -12,7 +12,7 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <div className="bg-sidebar flex flex-col  w-[60px] h-[768px]">
+    <div className="bg-sidebar flex flex-col  w-[60px] h-screen">
       <Image
         src={icon}
         alt="icon"

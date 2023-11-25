@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Sidebar from "../components/sidebar";
+import { RosterContext, RosterProvider } from "@/context/rosterContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,10 +19,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="flex h-full">
-          <Sidebar />
-          {children}
-        </div>
+        <RosterProvider>
+          <div className="flex h-full">
+            <Sidebar />
+            {children}
+          </div>
+        </RosterProvider>
       </body>
     </html>
   );
