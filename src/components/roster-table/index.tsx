@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -17,17 +17,17 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  searchValue: string;
 }
 
 export function RosterTable<TData, TValue>({
   columns,
   data,
+  searchValue,
 }: DataTableProps<TData, TValue>) {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const table = useReactTable({
@@ -40,24 +40,12 @@ export function RosterTable<TData, TValue>({
       columnFilters,
     },
   });
+  useEffect(() => {
+    table.getColumn("playerName")?.setFilterValue(searchValue);
+  }, [searchValue]);
 
   return (
     <>
-      <div className="flex items-center justify-end py-4 w-full gap-2">
-        <Input
-          placeholder="find Player"
-          value={
-            (table.getColumn("playerName")?.getFilterValue() as string) ?? ""
-          }
-          onChange={(event) =>
-            table.getColumn("playerName")?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm bg-Appbackground text-white"
-        />
-        <Button variant="outline" className="bg-Appprimary text-white">
-          Import team
-        </Button>
-      </div>
       <div className="rounded-md border overflow-y-scroll h-full">
         <Table className="bg-[#2D2D2D] ">
           <TableHeader>
