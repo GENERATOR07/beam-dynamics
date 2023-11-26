@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import TeamImporterDialog from "../components/teamImporterDialog";
-
+import TeamImporterDialog from "@/components/team-Importer-dialog";
 import { RiPencilFill } from "react-icons/ri";
-import RosterTable from "@/components/rosterTable";
+
 import { useRoster } from "@/hooks/useRoster";
+import { RosterTable } from "@/components/roster-table";
+import { ROSTER_TABLE_HEADERS } from "@/components/roster-table/column";
 
 export default function RosterPage() {
   const [teamName, setTeamName] = useState("My Team");
@@ -33,7 +34,7 @@ export default function RosterPage() {
       </div>
       <div className="bg-[#2D2D2D] h-4/5 w-3/4 rounded-[8px] mt-14 m-auto overflow-y-scroll">
         {roster ? (
-          <RosterTable tableData={roster} />
+          <RosterTable columns={ROSTER_TABLE_HEADERS} data={roster} />
         ) : (
           <div className="">
             <p className="text-gray-300">

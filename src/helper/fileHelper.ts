@@ -3,8 +3,8 @@ export const prepareRoosterTableData = (data: any) => {
     return header[0].toLocaleLowerCase() + header.slice(1).replace(" ", "");
   });
   const playerData: string[][] = data.slice(1);
-  const tableData = playerData.map((element: string[]) => {
-    const data: any = {};
+  const tableData = playerData.map((element: string[], i: number) => {
+    const data: any = { id: i + 1 };
     element.forEach((el: string, i: number) => {
       if (el === "")
         throw new Error(
