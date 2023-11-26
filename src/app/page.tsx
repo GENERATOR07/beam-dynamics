@@ -1,15 +1,16 @@
 "use client";
 
-import { useContext, useState } from "react";
+import { useState } from "react";
 import TeamImporterDialog from "../components/teamImporterDialog";
-import { RosterContext } from "@/context/rosterContext";
+
 import { RiPencilFill } from "react-icons/ri";
 import RosterTable from "@/components/rosterTable";
+import { useRoster } from "@/hooks/useRoster";
 
 export default function RosterPage() {
   const [teamName, setTeamName] = useState("My Team");
-  const { roster } = useContext(RosterContext);
-  console.log(roster);
+  const { roster } = useRoster();
+
   return (
     <main className="bg-Appbackground text-Appprimary w-full h-screen relative">
       <div className="flex gap-2 items-center absolute right-10">

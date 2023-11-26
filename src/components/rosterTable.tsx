@@ -1,8 +1,11 @@
 import { ROSTER_TABLE_HEADERS } from "@/constants/table";
+import { PlayerInfo } from "@/interfaces/rosterInterface";
 import Image from "next/image";
 import React from "react";
-
-export default function RosterTable({ tableData }: any) {
+interface RosterTableInterface {
+  tableData: PlayerInfo[];
+}
+export default function RosterTable({ tableData }: RosterTableInterface) {
   return (
     <table className="text-xs text-white w-full flex flex-col gap-2">
       <thead>
@@ -13,32 +16,32 @@ export default function RosterTable({ tableData }: any) {
         </tr>
       </thead>
       <tbody>
-        {tableData.map((data: any) => {
+        {tableData.map((data: PlayerInfo) => {
           return (
             <tr
               className="w-full flex justify-evenly items-center  "
-              key={data["Player Name"]}
+              key={data.PlayerName}
             >
               <td className="flex gap-1 p-1 justify-between items-center">
                 <span>
                   <Image
                     className="rounded-full"
-                    src={data["Flag Image"]}
+                    src={data.FlagImage}
                     alt="country flag"
                     width={10}
                     height={10}
                   />
                 </span>
-                {data["Player Name"]}
+                {data.PlayerName}
               </td>
-              <td>{data["Jersey Number"]}</td>
-              <td>{data["Starter"]}</td>
-              <td>{data["Position"]}</td>
-              <td>{data["Height"] / 10} m</td>
-              <td>{data["Weight"]} kg</td>
-              <td>{data["Nationality"]}</td>
-              <td>{data["Appearances"]}</td>
-              <td>{(data["Minutes Played"] / 60).toFixed(1)}</td>
+              <td>{data.JerseyNumber}</td>
+              <td>{data.Starter}</td>
+              <td>{data.Position}</td>
+              <td>{Number(data.Height) / 10} m</td>
+              <td>{data.Weight} kg</td>
+              <td>{data.Nationality}</td>
+              <td>{data.Appearances}</td>
+              <td>{(Number(data.MinutesPlayed) / 60).toFixed(1)}</td>
             </tr>
           );
         })}

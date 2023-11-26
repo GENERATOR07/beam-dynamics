@@ -8,7 +8,7 @@ export const prepareRoosterTableData = (data: any) => {
         throw new Error(
           "your sheet is missing data.please ensure all cells are filled out"
         );
-      data[tableHeader[i]] = el;
+      data[tableHeader[i].replace(" ", "")] = el;
     });
 
     return data;

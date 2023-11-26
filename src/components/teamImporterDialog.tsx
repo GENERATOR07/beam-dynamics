@@ -1,9 +1,11 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import CSVReader from "react-csv-reader";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -12,12 +14,14 @@ import {
   prepareFileSummary,
   prepareRoosterTableData,
 } from "@/helper/fileHelper";
-import { RosterContext } from "@/context/rosterContext";
+
+import { useRoster } from "@/hooks/useRoster";
+import { PlayerInfo } from "@/interfaces/rosterInterface";
 export default function TeamImporterDialog() {
-  const [tableData, setTableData] = useState();
+  const [tableData, setTableData] = useState<PlayerInfo[] | null>(null);
   const [fileSummary, setFileSummary] = useState<any>();
   const [err, setError] = useState<string>("");
-  const { setRoster } = useContext(RosterContext);
+  const { setRoster } = useRoster();
 
   const handelFileUpload = (data: any) => {
     try {
@@ -35,7 +39,7 @@ export default function TeamImporterDialog() {
 
   const handelImport = () => {
     setRoster(tableData);
-    setTableData(undefined);
+    setTableData(null);
   };
   return (
     <Dialog>
@@ -74,9 +78,14 @@ export default function TeamImporterDialog() {
             <span className="p-2 text-xs">{err}</span>
           </div>
         )}
-        <button className="bg-Appprimary p-2" onClick={handelImport}>
-          Import
-        </button>
+
+        <DialogFooter className="sm:justify-start">
+          <DialogClose asChild>
+            <button className="bg-Appprimary p-2" onClick={handelImport}>
+              Import
+            </button>
+          </DialogClose>
+        </DialogFooter>
       </DialogContent>
     </Dialog>
   );
