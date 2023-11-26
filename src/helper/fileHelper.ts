@@ -1,14 +1,16 @@
 export const prepareRoosterTableData = (data: any) => {
-  const tableHeader = data[0];
-  const playerData = data.slice(1);
-  const tableData = playerData.map((element: any) => {
+  const tableHeader: string[] = data[0].map((header: string) => {
+    return header[0].toLocaleLowerCase() + header.slice(1).replace(" ", "");
+  });
+  const playerData: string[][] = data.slice(1);
+  const tableData = playerData.map((element: string[]) => {
     const data: any = {};
-    element.forEach((el: any, i: number) => {
+    element.forEach((el: string, i: number) => {
       if (el === "")
         throw new Error(
           "your sheet is missing data.please ensure all cells are filled out"
         );
-      data[tableHeader[i].replace(" ", "")] = el;
+      data[tableHeader[i]] = el;
     });
 
     return data;
@@ -27,7 +29,7 @@ export const prepareFileSummary = (data: any) => {
   };
   data.forEach((el: any) => {
     summary.TotalPlayers = summary.TotalPlayers + 1;
-    summary[el.Position] = summary[el.Position] + 1;
+    summary[el.position] = summary[el.position] + 1;
   });
   return summary;
 };
