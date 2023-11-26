@@ -14,15 +14,6 @@ export default function RosterPage() {
 
   return (
     <main className="bg-Appbackground text-Appprimary w-full h-screen relative">
-      <div className="flex gap-2 items-center absolute right-10">
-        <input
-          className="rounded-[8px] p-2 bg-background border-white border-[1px]  "
-          placeholder="find player"
-        />
-        <button className="bg-Appprimary rounded-[8px] p-2 text-white">
-          <TeamImporterDialog />
-        </button>
-      </div>
       <div className="">
         <h3>Roster Details</h3>
         <div>
@@ -32,7 +23,7 @@ export default function RosterPage() {
           </button>
         </div>
       </div>
-      <div className="bg-[#2D2D2D] h-4/5 w-3/4 rounded-[8px] mt-14 m-auto overflow-y-scroll">
+      <div className=" h-4/5 w-3/4 rounded-[8px]  m-auto  ">
         {roster ? (
           <RosterTable columns={ROSTER_TABLE_HEADERS} data={roster} />
         ) : (

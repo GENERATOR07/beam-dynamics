@@ -1,17 +1,17 @@
 export interface PlayerInfo {
-  Appearances: string;
-  Assists: string;
-  CleanSheets: string;
-  FlagImage: string;
-  Goals: string;
-  Height: string;
-  JerseyNumber: string;
-  MinutesPlayed: string;
-  Nationality: string;
-  PlayerImage: string;
-  PlayerName: string;
-  Position: string;
-  Saves: string;
-  Starter: string;
-  Weight: string;
+  appearances: string;
+  assists: string;
+  cleanSheets: string;
+  flagImage: string;
+  goals: string;
+  height: string;
+  jerseyNumber: string;
+  minutesPlayed: string;
+  nationality: string;
+  playerImage: string;
+  playerName: string;
+  position: string;
+  saves: string;
+  starter: string;
+  weight: string;
 }
