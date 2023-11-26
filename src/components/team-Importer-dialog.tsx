@@ -13,10 +13,10 @@ import {
 import {
   prepareFileSummary,
   prepareRoosterTableData,
-} from "@/helper/fileHelper";
+} from "@/helper/file-Helper";
 
 import { useRoster } from "@/hooks/useRoster";
-import { PlayerInfo } from "@/interfaces/rosterInterface";
+import { PlayerInfo } from "@/interfaces/roster-Interface";
 export default function TeamImporterDialog() {
   const [tableData, setTableData] = useState<PlayerInfo[] | null>(null);
   const [fileSummary, setFileSummary] = useState<any>();

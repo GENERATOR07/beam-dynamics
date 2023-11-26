@@ -1,4 +1,5 @@
 export interface PlayerInfo {
+  id:number
   appearances: string;
   assists: string;
   cleanSheets: string;

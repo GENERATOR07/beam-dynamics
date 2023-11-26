@@ -1,6 +1,6 @@
 "use client";
 
-import { PlayerInfo } from "@/interfaces/rosterInterface";
+import { PlayerInfo } from "@/interfaces/roster-Interface";
 import { ReactNode, createContext, useContext, useState } from "react";
 
 export interface RosterContextValue {
