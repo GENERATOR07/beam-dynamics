@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, forwardRef, Ref, useImperativeHandle } from "react";
 import { Input } from "./ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/select";
 
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Button } from "./ui/button";
+
 import { useTableActions } from "@/hooks/useTableActions";
 
 export interface PlayerFormData {
@@ -27,7 +27,10 @@ interface PlayerEditFormProp {
   data: PlayerFormData;
 }
 
-export default function PlayerEditForm({ data }: PlayerEditFormProp) {
+export interface FormRef {
+  submit: () => void;
+}
+function PlayerEditForm({ data }: PlayerEditFormProp, ref: Ref<FormRef>) {
   const [formData, setFormData] = useState<PlayerFormData | undefined>(data);
   const { updatePlayer } = useTableActions();
   const handleChange = (e: any) => {
@@ -36,10 +39,11 @@ export default function PlayerEditForm({ data }: PlayerEditFormProp) {
     setFormData({ ...(formData as PlayerFormData), [key]: value });
   };
 
-  const handleSubmit = () => {
-    console.log(formData);
+  const submit = () => {
     updatePlayer(formData as PlayerFormData);
   };
+
+  useImperativeHandle(ref, () => ({ submit }));
 
   return (
     <div className="text-white">
@@ -133,7 +137,6 @@ export default function PlayerEditForm({ data }: PlayerEditFormProp) {
           defaultValue="No "
           id="starter"
           onValueChange={(v) => {
-            console.log(v);
             setFormData({ ...(formData as PlayerFormData), starter: v });
           }}
           className="flex gap-1"
@@ -149,13 +152,7 @@ export default function PlayerEditForm({ data }: PlayerEditFormProp) {
           </div>
         </RadioGroup>
       </div>
-      <Button
-        variant="outline"
-        className="bg-Appprimary"
-        onClick={handleSubmit}
-      >
-        Save Changes
-      </Button>
     </div>
   );
 }
+export default forwardRef(PlayerEditForm);
