@@ -1,4 +1,4 @@
-import { RosterContext, RosterContextValue } from "@/context/rosterContext";
+import { RosterContext, RosterContextValue } from "@/context/roster-context";
 import { useContext } from "react";
 
 export const useRoster = () => {

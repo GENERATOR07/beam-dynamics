@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Sidebar from "../components/sidebar";
-import { RosterContext, RosterProvider } from "@/context/rosterContext";
+import { RosterProvider } from "@/context/roster-context";
 
 const inter = Inter({ subsets: ["latin"] });
 
