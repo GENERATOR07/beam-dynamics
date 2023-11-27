@@ -1,6 +1,7 @@
 import React from "react";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -10,12 +11,16 @@ import {
 } from "@/components/ui/dialog";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { Button } from "./ui/button";
+import { useTableActions } from "@/hooks/useTableActions";
 interface DeleteDialogProps {
   id: number;
 }
 
 export default function PlayerDeleteDialog({ id }: DeleteDialogProps) {
-  console.log("u trying to delete", id);
+  const { deletePlayer } = useTableActions();
+  const handleDelete = () => {
+    deletePlayer(id);
+  };
   return (
     <Dialog>
       <DialogTrigger className="flex gap-1 p-1 ">
@@ -28,8 +33,12 @@ export default function PlayerDeleteDialog({ id }: DeleteDialogProps) {
           <DialogDescription>This action cannot be undone.</DialogDescription>
         </DialogHeader>
         <DialogFooter className="flex justify-end">
-          <Button>Cancel</Button>
-          <Button className="bg-red-600">Delete</Button>
+          <DialogClose>
+            <Button>Cancel</Button>
+            <Button onClick={handleDelete} className="bg-red-600">
+              Delete
+            </Button>
+          </DialogClose>
         </DialogFooter>
       </DialogContent>
     </Dialog>

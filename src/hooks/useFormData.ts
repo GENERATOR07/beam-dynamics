@@ -6,7 +6,9 @@ export default function useFormData(id: number) {
   const { roster } = useRoster();
   const player = roster?.find((player) => player.id == id);
   const formData: PlayerFormData = {
+    id,
     height: player?.height,
+
     jerseyNumber: player?.jerseyNumber,
     playerName: player?.playerName,
     weight: player?.weight,

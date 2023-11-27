@@ -1,11 +1,13 @@
 "use client";
 
 import { PlayerInfo } from "@/interfaces/roster-Interface";
-import { ReactNode, createContext, useState } from "react";
+import { RosterActions, rosterReducer } from "@/reducer/roster-reducer";
+import { ReactNode, createContext, useReducer, useState } from "react";
 
 export interface RosterContextValue {
   roster: PlayerInfo[] | null;
-  setRoster: (data: PlayerInfo[] | null) => void;
+
+  dispatch: React.Dispatch<RosterActions>;
 }
 
 export const RosterContext = createContext<RosterContextValue | undefined>(
@@ -15,15 +17,15 @@ export const RosterContext = createContext<RosterContextValue | undefined>(
 export const RosterProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [data, setData] = useState<PlayerInfo[] | null>(null);
+  const [roster, dispatch] = useReducer(rosterReducer, null);
 
-  const setRoster: RosterContextValue["setRoster"] = (data) => {
-    setData(data);
-  };
+  // const setRoster: RosterContextValue["setRoster"] = (data) => {
+  //   setData(data);
+  // };
 
   const contextValue: RosterContextValue = {
-    roster: data,
-    setRoster,
+    roster,
+    dispatch,
   };
 
   return (

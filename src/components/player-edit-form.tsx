@@ -11,8 +11,10 @@ import {
 
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Button } from "./ui/button";
+import { useTableActions } from "@/hooks/useTableActions";
 
 export interface PlayerFormData {
+  id: number;
   playerName: string | undefined;
   height: string | undefined;
   jerseyNumber: string | undefined;
@@ -27,6 +29,7 @@ interface PlayerEditFormProp {
 
 export default function PlayerEditForm({ data }: PlayerEditFormProp) {
   const [formData, setFormData] = useState<PlayerFormData | undefined>(data);
+  const { updatePlayer } = useTableActions();
   const handleChange = (e: any) => {
     const key = e.target.id;
     const value = e.target.value;
@@ -35,6 +38,7 @@ export default function PlayerEditForm({ data }: PlayerEditFormProp) {
 
   const handleSubmit = () => {
     console.log(formData);
+    updatePlayer(formData as PlayerFormData);
   };
 
   return (

@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
+  DialogClose,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { RiPencilFill } from "react-icons/ri";

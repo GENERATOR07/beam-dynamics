@@ -1,4 +1,5 @@
 import { RosterContext, RosterContextValue } from "@/context/roster-context";
+import { PlayerInfo } from "@/interfaces/roster-Interface";
 import { useContext } from "react";
 
 export const useRoster = () => {
@@ -6,5 +7,9 @@ export const useRoster = () => {
   if (!context) {
     throw new Error("useRoster must be used within a RosterProvider");
   }
-  return context as RosterContextValue;
+  const { roster, dispatch } = context;
+  const setRoster = (data: PlayerInfo[] | null) => {
+    dispatch({ type: "SET_ROSTER", payload: data as PlayerInfo[] });
+  };
+  return { roster, setRoster };
 };
