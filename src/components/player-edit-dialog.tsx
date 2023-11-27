@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -8,13 +8,15 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { RiPencilFill } from "react-icons/ri";
+import PlayerEditForm from "./player-edit-form";
+import useFormData from "@/hooks/useFormData";
 
 interface EditDialogProps {
   id: number;
 }
 
 export default function PlayerEditDialog({ id }: EditDialogProps) {
-  console.log("u trying to edit", id);
+  const formData = useFormData(id);
 
   return (
     <Dialog>
@@ -22,14 +24,8 @@ export default function PlayerEditDialog({ id }: EditDialogProps) {
         <RiPencilFill />
         <span>Edit Player</span>
       </DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Are you sure absolutely sure?</DialogTitle>
-          <DialogDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
-          </DialogDescription>
-        </DialogHeader>
+      <DialogContent className="bg-Appbackground text-white">
+        <PlayerEditForm data={formData} />
       </DialogContent>
     </Dialog>
   );

@@ -38,7 +38,6 @@ export default function TeamImporterDialog() {
   };
 
   const handelImport = () => {
-    console.log(tableData);
     setRoster(tableData);
     setTableData(null);
   };
