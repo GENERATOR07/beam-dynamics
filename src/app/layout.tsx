@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Sidebar from "../components/sidebar";
 import { RosterProvider } from "@/context/roster-context";
+import { PlayerContextProvider } from "@/context/player-context";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,10 +21,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <RosterProvider>
-          <div className="flex h-full">
-            <Sidebar />
-            {children}
-          </div>
+          <PlayerContextProvider>
+            <div className="flex h-full">
+              <Sidebar />
+              {children}
+            </div>
+          </PlayerContextProvider>
         </RosterProvider>
       </body>
     </html>

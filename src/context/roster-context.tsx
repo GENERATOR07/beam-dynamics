@@ -2,7 +2,7 @@
 
 import { PlayerInfo } from "@/interfaces/roster-Interface";
 import { RosterActions, rosterReducer } from "@/reducer/roster-reducer";
-import { ReactNode, createContext, useReducer, useState } from "react";
+import { ReactNode, createContext, useReducer } from "react";
 
 export interface RosterContextValue {
   roster: PlayerInfo[] | null;
@@ -18,10 +18,6 @@ export const RosterProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [roster, dispatch] = useReducer(rosterReducer, null);
-
-  // const setRoster: RosterContextValue["setRoster"] = (data) => {
-  //   setData(data);
-  // };
 
   const contextValue: RosterContextValue = {
     roster,

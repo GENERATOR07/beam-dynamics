@@ -11,7 +11,7 @@ export interface FormationError {
   title: string;
   msg: string;
 }
-const checkFormation = (
+const checkForFormationError = (
   formation: FormationInterface
 ): FormationError | null => {
   let Error: FormationError | null = null;
@@ -62,7 +62,7 @@ export default function useFormation() {
       formation[p.position].push(p);
     }
   });
-  err = checkFormation(formation);
+  err = checkForFormationError(formation);
 
   return { formation, err };
 }
