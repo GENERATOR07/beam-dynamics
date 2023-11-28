@@ -1,6 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import { RiPencilFill } from "react-icons/ri";
-export default function TeamName() {
+
+interface TeamNameProps {
+  title: string;
+}
+
+export default function TeamName({ title }: TeamNameProps) {
   const [teamName, setTeamName] = useState<string>("My Team");
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -44,7 +49,7 @@ export default function TeamName() {
   const handelHover = () => {};
   return (
     <div>
-      <h3 className="text-xs">Roster Details</h3>
+      <h3 className="text-xs text-Appprimary">{title}</h3>
 
       <div
         className="text-white flex items-center gap-1 text-sm"

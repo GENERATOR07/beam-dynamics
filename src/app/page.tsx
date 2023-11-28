@@ -18,7 +18,7 @@ export default function RosterPage() {
     <main className="bg-Appbackground text-Appprimary w-full h-screen relative">
       <div className=" h-4/5 w-3/4 rounded-[8px]  m-auto  ">
         <div className="flex items-center justify-between py-4 w-full gap-2 ">
-          <TeamName />
+          <TeamName title="Roster Details" />
           <div className="flex gap-1">
             <Input
               placeholder="find Player"
