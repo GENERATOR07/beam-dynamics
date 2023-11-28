@@ -14,7 +14,9 @@ export default function PlayerPosition({ player }: PlayerPositionProps) {
       <button
         onClick={handleClick}
         className={`h-8 w-8 rounded-full text-xs  flex items-center justify-center  p-2 ${
-          player.id === selectedPlayer?.id ? "bg-yellow-600" : "bg-black"
+          player.id === selectedPlayer?.id
+            ? "bg-yellow-600"
+            : "bg-Appbackground border-[1px] border-white"
         }`}
       >
         {player.jerseyNumber}
