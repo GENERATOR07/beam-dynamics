@@ -1,3 +1,4 @@
+import useTeamName from "@/hooks/useTeamName";
 import React, { useState, useRef, useEffect } from "react";
 import { RiPencilFill } from "react-icons/ri";
 
@@ -6,7 +7,7 @@ interface TeamNameProps {
 }
 
 export default function TeamName({ title }: TeamNameProps) {
-  const [teamName, setTeamName] = useState<string>("My Team");
+  const { teamName, setTeamName } = useTeamName();
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
