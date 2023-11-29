@@ -10,9 +10,9 @@ interface FormationOverviewProps {
 export default function FormationOverview({
   formation,
 }: FormationOverviewProps) {
-  const { selectPlayer } = usePlayer();
+  const { selectPlayer, selectedPlayer } = usePlayer();
   useEffect(() => {
-    selectPlayer(formation.Goalkeeper[0]);
+    if (!selectedPlayer) selectPlayer(formation.Goalkeeper[0]);
   }, []);
   return (
     <div
