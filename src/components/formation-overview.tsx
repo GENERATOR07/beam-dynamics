@@ -13,7 +13,7 @@ export default function FormationOverview({
   const { selectPlayer, selectedPlayer } = usePlayer();
   useEffect(() => {
     if (formation && !selectedPlayer) selectPlayer(formation.Goalkeeper[0]);
-  }, []);
+  }, [formation]);
   return (
     <div
       style={{ backgroundImage: `url(${field.src})` }}
