@@ -10,7 +10,7 @@ export default function PlayerPosition({ player }: PlayerPositionProps) {
     selectPlayer(player);
   };
   return (
-    <div>
+    <>
       <button
         onClick={handleClick}
         className={`h-8 w-8 rounded-full text-xs  flex items-center justify-center  p-2 ${
@@ -22,6 +22,6 @@ export default function PlayerPosition({ player }: PlayerPositionProps) {
         {player.jerseyNumber}
       </button>
       <span className="text-xs ">{player.playerName}</span>
-    </div>
+    </>
   );
 }

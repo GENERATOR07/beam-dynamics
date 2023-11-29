@@ -5,10 +5,12 @@ import FormationPreview from "@/components/formation-overview";
 import PlayerDetails from "@/components/player-details";
 import TeamName from "@/components/team-name";
 import useFormation from "@/hooks/useFormation";
+import usePlayer from "@/hooks/usePlayer";
 import React from "react";
 
 export default function FormationPage() {
   const { formation, err } = useFormation();
+  const { selectedPlayer } = usePlayer();
 
   return (
     <div className="bg-Appbackground  text-Appprimary text-primary w-full relative ">
@@ -21,8 +23,8 @@ export default function FormationPage() {
             <FormationErrorAlert error={err} />
           </div>
         ) : null}
-        <FormationPreview formation={formation} />
-        <PlayerDetails />
+        <FormationPreview formation={err ? null : formation} />
+        <PlayerDetails selectedPlayer={selectedPlayer} />
       </div>
     </div>
   );
