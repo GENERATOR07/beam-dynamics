@@ -11,9 +11,9 @@ export default function FormationOverview({
   formation,
 }: FormationOverviewProps) {
   const { selectPlayer, selectedPlayer } = usePlayer();
-  useEffect(() => {
-    if (formation && !selectedPlayer) selectPlayer(formation.Goalkeeper[0]);
-  }, [formation]);
+
+  if (formation && !selectedPlayer) selectPlayer(formation.Goalkeeper[0]);
+
   return (
     <div
       style={{ backgroundImage: `url(${field.src})` }}
@@ -23,21 +23,24 @@ export default function FormationOverview({
         <>
           <div className="flex flex-col  justify-center items-center gap-1">
             {formation.Goalkeeper.map((p: PlayerInfo) => (
-              <div>
-                <PlayerPosition player={p} key={p.id} />
+              <div key={p.id}>
+                <PlayerPosition player={p} />
               </div>
             ))}
           </div>
           <div className="flex flex-col  justify-around gap-1 ">
             {formation.Defender.map((p: PlayerInfo, i: number) => (
-              <div className={`${i === 0 || i === 3 ? "relative left-3" : ""}`}>
-                <PlayerPosition player={p} key={p.id} />
+              <div
+                className={`${i === 0 || i === 3 ? "relative left-3" : ""}`}
+                key={p.id}
+              >
+                <PlayerPosition player={p} />
               </div>
             ))}
           </div>
           <div className="flex flex-col  justify-around gap-1">
             {formation.Midfielder.map((p: PlayerInfo) => (
-              <div>
+              <div key={p.id}>
                 {" "}
                 <PlayerPosition player={p} key={p.id} />
               </div>
@@ -47,6 +50,7 @@ export default function FormationOverview({
             {formation.Forward.map((p: PlayerInfo, i: number) => (
               <div
                 className={`${i === 0 || i === 2 ? "relative right-3" : ""}`}
+                key={p.id}
               >
                 <PlayerPosition player={p} key={p.id} />
               </div>

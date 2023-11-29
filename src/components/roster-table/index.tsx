@@ -42,7 +42,7 @@ export function RosterTable<TData, TValue>({
   });
   useEffect(() => {
     table.getColumn("playerName")?.setFilterValue(searchValue);
-  }, [searchValue]);
+  }, [searchValue, table]);
 
   return (
     <>
