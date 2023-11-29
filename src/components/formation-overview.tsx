@@ -12,7 +12,11 @@ export default function FormationOverview({
 }: FormationOverviewProps) {
   const { selectPlayer, selectedPlayer } = usePlayer();
 
-  if (formation && !selectedPlayer) selectPlayer(formation.Goalkeeper[0]);
+  useEffect(() => {
+    if (formation) {
+      selectPlayer(selectedPlayer ? selectedPlayer : formation.Goalkeeper[0]);
+    }
+  }, [formation, selectPlayer, selectedPlayer]);
 
   return (
     <div

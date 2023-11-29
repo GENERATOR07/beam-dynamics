@@ -36,7 +36,7 @@ export default function PlayerDetails({ selectedPlayer }: PlayerDetailsProps) {
               <div>
                 <span className="flex flex-col gap-1">Height</span>
                 <span className="text-sm">{`${
-                  Number(selectedPlayer?.height) / 10
+                  Number(selectedPlayer?.height) / 100
                 } m `}</span>
               </div>
               <div>

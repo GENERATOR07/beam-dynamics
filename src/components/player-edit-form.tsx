@@ -1,4 +1,4 @@
-import { useState, forwardRef, Ref, useImperativeHandle } from "react";
+import { useState, forwardRef, Ref, useImperativeHandle, useMemo } from "react";
 import { Input } from "./ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -99,15 +99,24 @@ function PlayerEditForm({ data }: PlayerEditFormProp, ref: Ref<FormRef>) {
       {/* <div>
         <Label>Nationality</Label>
         <Select
-          onValueChange={handleChange}
+          onValueChange={(v) =>
+            setFormData({ ...(formData as PlayerFormData), nationality: v })
+          }
           value={formData?.nationality}
           name="nationality"
         >
           <SelectTrigger className="w-[180px]  bg-Appbackground text-white">
             <SelectValue />
           </SelectTrigger>
-          <SelectContent className="bg-Appbackground">
-            <SelectItem value="argentina">Argentina</SelectItem>
+          <SelectContent className="bg-Appbackground text-white">
+            {countryOptions.map((data) => (
+              <SelectItem
+                value={`${data.label[0] + data.label.slice(1).toLowerCase()}`}
+                key={data.value}
+              >
+                {data.label}
+              </SelectItem>
+            ))}
           </SelectContent>
         </Select>
       </div> */}

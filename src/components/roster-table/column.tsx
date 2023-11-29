@@ -30,7 +30,7 @@ export const ROSTER_TABLE_HEADERS: ColumnDef<PlayerInfo>[] = [
   {
     header: "Height",
     accessorKey: "height",
-    cell: ({ row }) => `${Number(row.getValue("height")) / 10} m`,
+    cell: ({ row }) => `${Number(row.getValue("height")) / 100} m`,
   },
   {
     header: "Weight",
@@ -43,7 +43,7 @@ export const ROSTER_TABLE_HEADERS: ColumnDef<PlayerInfo>[] = [
     header: "Minutes Played",
     accessorKey: "minutesPlayed",
     cell: ({ row }) => {
-      return ((row.getValue("minutesPlayed") as number) / 60).toFixed(1);
+      return row.getValue("minutesPlayed");
     },
   },
   {

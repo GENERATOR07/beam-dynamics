@@ -24,7 +24,7 @@ export default function FormationPage() {
           </div>
         ) : null}
         <FormationPreview formation={err ? null : formation} />
-        <PlayerDetails selectedPlayer={selectedPlayer} />
+        <PlayerDetails selectedPlayer={err ? null : selectedPlayer} />
       </div>
     </div>
   );
