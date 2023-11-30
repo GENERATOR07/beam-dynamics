@@ -13,7 +13,11 @@ import TeamName from "@/components/team-name";
 export default function RosterPage() {
   const [search, setSearch] = useState<string | "">("");
   const { roster } = useRoster();
-
+  const handleClear = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Escape") {
+      setSearch("");
+    }
+  };
   return (
     <main className="bg-Appbackground text-Appprimary w-full h-screen relative">
       <div className=" h-4/5 w-3/4 rounded-[8px]  m-auto  ">
@@ -25,6 +29,7 @@ export default function RosterPage() {
               value={search}
               onChange={(event) => setSearch(event.target.value)}
               className="max-w-sm bg-Appbackground text-white"
+              onKeyDown={handleClear}
             />
             <Button variant="outline" className="bg-Appprimary text-white">
               <TeamImporterDialog />
