@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CSVReader from "react-csv-reader";
 import {
   Dialog,
@@ -17,11 +17,12 @@ import {
 
 import { useRoster } from "@/hooks/useRoster";
 import { PlayerInfo } from "@/interfaces/roster-Interface";
+import { Button } from "./ui/button";
 export default function TeamImporterDialog() {
   const [tableData, setTableData] = useState<PlayerInfo[] | null>(null);
   const [fileSummary, setFileSummary] = useState<any>();
   const [err, setError] = useState<string>("");
-  const { setRoster } = useRoster();
+  const { setRoster, roster } = useRoster();
 
   const handelFileUpload = (data: any) => {
     try {
@@ -41,35 +42,41 @@ export default function TeamImporterDialog() {
     setRoster(tableData);
 
     setTableData(null);
+    setFileSummary(null);
   };
   return (
     <Dialog>
-      <DialogTrigger className="">Import team</DialogTrigger>
-      <DialogContent className="text-white w-[800px] h-[400px] flex flex-col bg-Appbackground">
+      <DialogTrigger className="">
+        {roster ? "Re-Import" : "Import"}
+      </DialogTrigger>
+      <DialogContent className="text-white w-[800px] h-[400px] flex flex-col bg-Appbackground text-xs ">
         <DialogHeader>
           <DialogTitle>Importer</DialogTitle>
-          <DialogDescription>Roster File</DialogDescription>
+          <div className="bg-gray-300 h-[1px]"></div>
+          <DialogDescription className="text-white text-sm">
+            Roster File
+          </DialogDescription>
         </DialogHeader>
         <CSVReader onFileLoaded={handelFileUpload} />
         {err === "" ? <span>File must me in .csv format</span> : null}
         {err === "" ? (
           <table className="text-sm text-white w-full flex flex-col gap-2">
             <thead>
-              <tr className="w-full flex justify-evenly">
-                <th>Total Players</th>
-                <th>Goalkeepers</th>
-                <th>Defenders</th>
-                <th>Midfielders</th>
-                <th>Forwards</th>
+              <tr className="w-full flex justify-start text-xs">
+                <th className="grow ">Total Players</th>
+                <th className="grow ">Goalkeepers</th>
+                <th className="grow ">Defenders</th>
+                <th className="grow ">Midfielders</th>
+                <th className="grow ">Forwards</th>
               </tr>
             </thead>
             <tbody>
-              <tr className="w-full flex justify-evenly ">
-                <td>{fileSummary?.TotalPlayers}</td>
-                <td>{fileSummary?.Goalkeeper}</td>
-                <td>{fileSummary?.Defender}</td>
-                <td>{fileSummary?.Midfielder}</td>
-                <td>{fileSummary?.Forward}</td>
+              <tr className="w-full flex text-xs text-center ">
+                <td className="grow ">{fileSummary?.TotalPlayers}</td>
+                <td className="grow ">{fileSummary?.Goalkeeper}</td>
+                <td className="grow ">{fileSummary?.Defender}</td>
+                <td className="grow ">{fileSummary?.Midfielder}</td>
+                <td className="grow ">{fileSummary?.Forward}</td>
               </tr>
             </tbody>
           </table>
@@ -80,11 +87,16 @@ export default function TeamImporterDialog() {
           </div>
         )}
 
-        <DialogFooter className="sm:justify-start">
+        <DialogFooter className="">
           <DialogClose asChild>
-            <button className="bg-Appprimary p-2" onClick={handelImport}>
+            <Button
+              className="bg-Appbackground text-white p-2 absolute bottom-3 "
+              onClick={handelImport}
+              variant="outline"
+              disabled={!tableData}
+            >
               Import
-            </button>
+            </Button>
           </DialogClose>
         </DialogFooter>
       </DialogContent>
