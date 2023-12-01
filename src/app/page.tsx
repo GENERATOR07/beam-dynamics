@@ -30,7 +30,7 @@ export default function RosterPage() {
   const clearSearch = () => {
     setTableData(roster);
   };
-  console.log(tableData);
+
   return (
     <main className="bg-Appbackground text-Appprimary w-full h-screen relative">
       <div className=" h-4/5 w-3/4 rounded-[8px]  m-auto  ">

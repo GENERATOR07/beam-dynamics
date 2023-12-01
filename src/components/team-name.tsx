@@ -47,7 +47,17 @@ export default function TeamName({ title }: TeamNameProps) {
       document.removeEventListener("click", handleClickOutside);
     };
   }, [isEditing]);
-  const handelHover = () => {};
+
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Escape") {
+      setTeamName("");
+    }
+    if (event.key === "Enter") {
+      inputRef.current?.blur();
+      setIsEditing(false);
+    }
+  };
+
   return (
     <div>
       <h3 className="text-xs text-Appprimary">{title}</h3>
@@ -63,7 +73,7 @@ export default function TeamName({ title }: TeamNameProps) {
           value={teamName}
           disabled={!isEditing}
           onChange={handelChange}
-          onMouseOver={handelHover}
+          onKeyDown={handleKeyPress}
         />
         <button
           className={`${
