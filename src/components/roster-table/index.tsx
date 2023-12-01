@@ -1,8 +1,7 @@
 "use client";
-import { useState, useEffect } from "react";
+
 import {
   ColumnDef,
-  ColumnFiltersState,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
@@ -21,28 +20,19 @@ import {
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
-  searchValue: string;
 }
 
 export function RosterTable<TData, TValue>({
   columns,
   data,
-  searchValue,
 }: DataTableProps<TData, TValue>) {
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
-    onColumnFiltersChange: setColumnFilters,
+
     getFilteredRowModel: getFilteredRowModel(),
-    state: {
-      columnFilters,
-    },
   });
-  useEffect(() => {
-    table.getColumn("playerName")?.setFilterValue(searchValue);
-  }, [searchValue, table]);
 
   return (
     <>
