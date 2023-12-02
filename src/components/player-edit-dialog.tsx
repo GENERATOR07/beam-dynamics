@@ -22,19 +22,22 @@ export default function PlayerEditDialog({ id }: EditDialogProps) {
   };
   return (
     <Dialog>
-      <DialogTrigger className="flex gap-1 p-1 ">
-        <RiPencilFill />
-        <span>Edit Player</span>
+      <DialogTrigger className="flex gap-4 p-1 item-center jus">
+        <RiPencilFill size={24} />
+        <span className="text-[14px] leading-[21px]">Edit Player</span>
       </DialogTrigger>
-      <DialogContent className="bg-Appbackground text-white">
+      <DialogContent className="bg-Appbackground text-white w-[480px] h-[582px]">
+        <span className="text-[18px] leading-[27px] relative bottom-3">
+          Edit Player
+        </span>
         <PlayerEditForm ref={formRef} data={formData} />
-        <DialogClose>
+        <DialogClose className="relative left-40">
           <Button
             variant="outline"
-            className="bg-Appprimary"
+            className="bg-Appprimary "
             onClick={handleSubmit}
           >
-            Save Changes
+            Edit Player
           </Button>
         </DialogClose>
       </DialogContent>

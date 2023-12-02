@@ -21,18 +21,18 @@ export default function FormationOverview({
   return (
     <div
       style={{ backgroundImage: `url(${field.src})` }}
-      className="w-2/3 bg-contain bg-no-repeat flex gap-10 p-6"
+      className="w-[808px] bg-contain bg-no-repeat flex gap-10 justify-evenly "
     >
       {formation ? (
         <>
-          <div className="flex flex-col  justify-center items-center gap-1">
+          <div className="flex flex-col  justify-center items-center gap-1 relative left-2 top-4">
             {formation.Goalkeeper.map((p: PlayerInfo) => (
               <div key={p.id}>
                 <PlayerPosition player={p} />
               </div>
             ))}
           </div>
-          <div className="flex flex-col  justify-around gap-1 ">
+          <div className="flex flex-col  justify-around gap-1 relative right-16">
             {formation.Defender.map((p: PlayerInfo, i: number) => (
               <div
                 className={`${i === 0 || i === 3 ? "relative left-3" : ""}`}
@@ -42,7 +42,7 @@ export default function FormationOverview({
               </div>
             ))}
           </div>
-          <div className="flex flex-col  justify-around gap-1">
+          <div className="flex flex-col  justify-around gap-1 relative right-20 top-3">
             {formation.Midfielder.map((p: PlayerInfo) => (
               <div key={p.id}>
                 {" "}
@@ -50,7 +50,7 @@ export default function FormationOverview({
               </div>
             ))}
           </div>
-          <div className="flex flex-col  justify-around gap-1">
+          <div className="flex flex-col  justify-around gap-1 relative right-16 top-4">
             {formation.Forward.map((p: PlayerInfo, i: number) => (
               <div
                 className={`${i === 0 || i === 2 ? "relative right-3" : ""}`}

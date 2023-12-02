@@ -26,8 +26,13 @@ export default function ActionsDropDown({ playerId }: ActionsDropDownProps) {
           <MoreHorizontal className="h-4 w-4" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="bg-Appbackground text-white" align="end">
-        <DropdownMenuLabel>Actions</DropdownMenuLabel>
+      <DropdownMenuContent
+        className="bg-Appbackground text-white w-[233px] h-[167px] p-4 flex flex-col gap-4"
+        align="end"
+      >
+        <DropdownMenuLabel className="text-[18px] leading-[18px]">
+          Actions
+        </DropdownMenuLabel>
 
         <PlayerEditDialog id={playerId} />
 

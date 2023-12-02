@@ -32,6 +32,7 @@ export interface FormRef {
 }
 function PlayerEditForm({ data }: PlayerEditFormProp, ref: Ref<FormRef>) {
   const [formData, setFormData] = useState<PlayerFormData | undefined>(data);
+
   const { updatePlayer } = useTableActions();
   const handleChange = (e: any) => {
     const key = e.target.id;
@@ -46,47 +47,51 @@ function PlayerEditForm({ data }: PlayerEditFormProp, ref: Ref<FormRef>) {
   useImperativeHandle(ref, () => ({ submit }));
 
   return (
-    <div className="text-white">
-      <div>
-        <Label htmlFor="playerName">Player Name</Label>
-        <Input
-          id="playerName"
-          value={formData?.playerName}
-          onChange={handleChange}
-          className="bg-Appbackground"
-        />
+    <div className="text-white text-sm flex  flex-col gap-6">
+      <div className="flex gap-4">
+        <div className="flex flex-col gap-4">
+          <Label htmlFor="playerName">Player Name</Label>
+          <Input
+            id="playerName"
+            value={formData?.playerName}
+            onChange={handleChange}
+            className="bg-Appbackground"
+          />
+        </div>
+        <div className="flex flex-col gap-4">
+          <Label htmlFor="jerseyNumber">Jersey Number</Label>
+          <Input
+            id="jerseyNumber"
+            value={formData?.jerseyNumber}
+            onChange={handleChange}
+            className="bg-Appbackground"
+          />
+        </div>
       </div>
-      <div>
-        <Label htmlFor="jerseyNumber">Jersey Number</Label>
-        <Input
-          id="jerseyNumber"
-          value={formData?.jerseyNumber}
-          onChange={handleChange}
-          className="bg-Appbackground"
-        />
+      <div className="flex gap-4">
+        <div className="flex flex-col gap-4">
+          <Label htmlFor="height">Height</Label>
+          <Input
+            type="text"
+            id="height"
+            value={formData?.height}
+            onChange={handleChange}
+            className="bg-Appbackground"
+          />
+        </div>
+        <div className="flex flex-col gap-4">
+          <Label htmlFor="weight">Weight</Label>
+          <Input
+            type="text"
+            id="weight"
+            value={formData?.weight}
+            onChange={handleChange}
+            className="bg-Appbackground"
+          />
+        </div>
       </div>
 
-      <div>
-        <Label htmlFor="height">Height</Label>
-        <Input
-          type="text"
-          id="height"
-          value={formData?.height}
-          onChange={handleChange}
-          className="bg-Appbackground"
-        />
-      </div>
-      <div>
-        <Label htmlFor="weight">Weight</Label>
-        <Input
-          type="text"
-          id="weight"
-          value={formData?.weight}
-          onChange={handleChange}
-          className="bg-Appbackground"
-        />
-      </div>
-      <div>
+      <div className="flex flex-col gap-4">
         <Label htmlFor="nationality">Nationality</Label>
         <Input
           type="text"
@@ -120,7 +125,7 @@ function PlayerEditForm({ data }: PlayerEditFormProp, ref: Ref<FormRef>) {
           </SelectContent>
         </Select>
       </div> */}
-      <div>
+      <div className="flex flex-col gap-4">
         <Label>Position</Label>
         <Select
           onValueChange={(v) =>
@@ -140,7 +145,7 @@ function PlayerEditForm({ data }: PlayerEditFormProp, ref: Ref<FormRef>) {
           </SelectContent>
         </Select>
       </div>
-      <div>
+      <div className="flex flex-col gap-4">
         <Label htmlFor="starter">Starter</Label>
         <RadioGroup
           defaultValue="No "

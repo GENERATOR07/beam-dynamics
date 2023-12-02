@@ -60,10 +60,10 @@ export default function TeamName({ title }: TeamNameProps) {
 
   return (
     <div>
-      <h3 className="text-xs text-Appprimary">{title}</h3>
+      <h3 className=" text-Appprimary text-xs">{title}</h3>
 
       <div
-        className="text-white flex items-center gap-1 text-sm"
+        className="text-white flex items-center gap-1 text-base"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >

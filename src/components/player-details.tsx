@@ -7,7 +7,7 @@ interface PlayerDetailsProps {
 }
 export default function PlayerDetails({ selectedPlayer }: PlayerDetailsProps) {
   return (
-    <div className="w-1/4 bg-Appbackground flex flex-col gap-2">
+    <div className="w-1/4 bg-Appbackground flex flex-col gap-6 h-[541px]">
       {selectedPlayer ? (
         <>
           <div
@@ -25,29 +25,32 @@ export default function PlayerDetails({ selectedPlayer }: PlayerDetailsProps) {
               </span>
             </div>
             <div className="flex flex-col gap-2">
-              <span className="text-xl ">{selectedPlayer?.playerName}</span>
-              <span className="text-xs text-Appprimary">
+              <span className="text-3xl font-medium ">
+                {selectedPlayer?.playerName}
+              </span>
+              <span className="text-lg font-medium text-Appprimary">
                 {selectedPlayer?.position}
               </span>
             </div>
           </div>
+          <div className="bg-[#494949] h-[1px] mx-4 "></div>
           <div className="h-1/2">
-            <div className="h-1/3 flex justify-around text-[10px]">
-              <div>
-                <span className="flex flex-col gap-1">Height</span>
-                <span className="text-sm">{`${
+            <div className="h-1/3 flex justify-around text-sm ">
+              <div className="flex flex-col gap-2">
+                <span className=" text-lightText ">Height</span>
+                <span className="">{`${
                   Number(selectedPlayer?.height) / 100
                 } m `}</span>
               </div>
-              <div>
-                <span className="flex flex-col gap-2">Weight</span>
-                <span className="text-sm">{`${Number(
+              <div className="flex flex-col gap-2">
+                <span className=" text-lightText">Weight</span>
+                <span className="">{`${Number(
                   selectedPlayer?.weight
                 )} kg `}</span>
               </div>
-              <div>
-                <span className="flex flex-col gap-2 text-">Nationality</span>
-                <div className="flex gap-1 items-center text-sm">
+              <div className="flex flex-col gap-2">
+                <span className="  text-lightText">Nationality</span>
+                <div className="flex gap-1 items-center ">
                   <img
                     className="w-5 h-5"
                     src={selectedPlayer?.flagImage}
@@ -57,30 +60,30 @@ export default function PlayerDetails({ selectedPlayer }: PlayerDetailsProps) {
                 </div>
               </div>
             </div>
-            <div className="h-2/3 grid grid-cols-2 gap-2 px-5 text-xs">
+            <div className="h-2/3 grid grid-cols-2 gap-2 px-5 text-sm">
               <div className="flex flex-col gap-1">
-                <span className="text-Appprimary text-lg">
+                <span className="text-Appprimary text-2xl">
                   {selectedPlayer?.appearances}
                 </span>
-                <span>Appearances</span>
+                <span className=" text-lightText">Appearances</span>
               </div>
               <div className="flex flex-col gap-1">
-                <span className="text-Appprimary text-lg">
+                <span className="text-Appprimary text-2xl">
                   {selectedPlayer?.minutesPlayed}
                 </span>
-                <span>Minutes Played</span>
+                <span className=" text-lightText">Minutes Played</span>
               </div>
               <div className="flex flex-col gap-1">
-                <span className="text-Appprimary text-lg">
+                <span className="text-Appprimary text-2xl">
                   {selectedPlayer?.cleanSheets}
                 </span>
-                <span>Clean sheets</span>
+                <span className=" text-lightText">Clean sheets</span>
               </div>
               <div className="flex flex-col gap-1">
-                <span className="text-Appprimary text-lg">
+                <span className="text-Appprimary text-2xl">
                   {selectedPlayer?.saves}
                 </span>
-                <span>Saves</span>
+                <span className=" text-lightText">Saves</span>
               </div>
             </div>
           </div>

@@ -24,7 +24,7 @@ export default function RootLayout({
         <TeamContextProvider>
           <RosterProvider>
             <PlayerContextProvider>
-              <div className="flex h-full">
+              <div className="flex h-full font-poppins">
                 <Sidebar />
                 {children}
               </div>

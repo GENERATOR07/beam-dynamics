@@ -16,10 +16,14 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        poppins: ["Poppins", "sans-serif"],
+      },
       colors: {
         Appbackground: "#222222",
         sidebar: "#111111",
         Appprimary: "#FEA013",
+        lightText: "#CBCBCB",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

@@ -23,9 +23,9 @@ export default function PlayerDeleteDialog({ id }: DeleteDialogProps) {
   };
   return (
     <Dialog>
-      <DialogTrigger className="flex gap-1 p-1 ">
-        <RiDeleteBin6Line />
-        <span>Delete Player</span>
+      <DialogTrigger className="flex gap-4 p-1 ">
+        <RiDeleteBin6Line size={24} />
+        <span className="text-[14px] leading-[21px]">Delete Player</span>
       </DialogTrigger>
       <DialogContent className="bg-Appbackground text-white">
         <DialogHeader>
