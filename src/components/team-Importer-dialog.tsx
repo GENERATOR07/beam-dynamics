@@ -18,10 +18,12 @@ import {
 import { useRoster } from "@/hooks/useRoster";
 import { PlayerInfo } from "@/interfaces/roster-Interface";
 import { Button } from "./ui/button";
+
+import FileUploader from "./File-uploader";
 export default function TeamImporterDialog() {
   const [tableData, setTableData] = useState<PlayerInfo[] | null>(null);
-  const [fileSummary, setFileSummary] = useState<any>();
-  const [err, setError] = useState<string>("");
+  const [fileSummary, setFileSummary] = useState<any | null>(null);
+  const [err, setError] = useState<string | null>(null);
   const { setRoster, roster } = useRoster();
 
   const handelFileUpload = (data: any) => {
@@ -32,9 +34,11 @@ export default function TeamImporterDialog() {
 
       setFileSummary(fileSummary);
       setTableData(tableData);
-      setError("");
+      setError(null);
     } catch (err: any) {
       setError(err.message);
+      setFileSummary(null);
+      throw new Error(err.message);
     }
   };
 
@@ -57,9 +61,19 @@ export default function TeamImporterDialog() {
             Roster File
           </DialogDescription>
         </DialogHeader>
-        <CSVReader onFileLoaded={handelFileUpload} />
-        {err === "" ? <span>File must me in .csv format</span> : null}
-        {err === "" ? (
+
+        <FileUploader handleUpload={handelFileUpload} />
+        {!err ? (
+          <span className="text-xs text-lightText">
+            File must me in .csv format
+          </span>
+        ) : (
+          <div className="flex flex-col gap-1">
+            <span className=" text-red-600">Error</span>
+            <span className="p-2 text-xs">{err}</span>
+          </div>
+        )}
+        {fileSummary ? (
           <table className="text-sm text-white w-full flex flex-col gap-2">
             <thead>
               <tr className="w-full flex justify-start text-xs">
@@ -80,12 +94,7 @@ export default function TeamImporterDialog() {
               </tr>
             </tbody>
           </table>
-        ) : (
-          <div className="flex flex-col gap-1">
-            <span className=" text-red-600">Error</span>
-            <span className="p-2 text-xs">{err}</span>
-          </div>
-        )}
+        ) : null}
 
         <DialogFooter className="">
           <DialogClose asChild>
@@ -93,7 +102,7 @@ export default function TeamImporterDialog() {
               className="bg-Appbackground text-white p-2 absolute bottom-3 "
               onClick={handelImport}
               variant="outline"
-              disabled={!tableData}
+              disabled={!fileSummary}
             >
               Import
             </Button>

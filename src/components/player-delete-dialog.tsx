@@ -35,7 +35,7 @@ export default function PlayerDeleteDialog({ id }: DeleteDialogProps) {
         <DialogFooter className="flex justify-end">
           <DialogClose>
             <Button>Cancel</Button>
-            <Button onClick={handleDelete} className="bg-red-600">
+            <Button onClick={handleDelete} className="bg-[#D23131]">
               Delete
             </Button>
           </DialogClose>
