@@ -5,6 +5,7 @@ import Sidebar from "../components/sidebar";
 import { RosterProvider } from "@/context/roster-context";
 import { PlayerContextProvider } from "@/context/player-context";
 import { TeamContextProvider } from "@/context/team-name-context";
+import { NationalityContextProvider } from "@/context/nationality-context";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,10 +25,12 @@ export default function RootLayout({
         <TeamContextProvider>
           <RosterProvider>
             <PlayerContextProvider>
-              <div className="flex h-full font-poppins">
-                <Sidebar />
-                {children}
-              </div>
+              <NationalityContextProvider>
+                <div className="flex h-full font-poppins">
+                  <Sidebar />
+                  {children}
+                </div>
+              </NationalityContextProvider>
             </PlayerContextProvider>
           </RosterProvider>
         </TeamContextProvider>

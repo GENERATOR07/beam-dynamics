@@ -1,4 +1,10 @@
-import { useState, forwardRef, Ref, useImperativeHandle } from "react";
+import {
+  useState,
+  forwardRef,
+  Ref,
+  useImperativeHandle,
+  useEffect,
+} from "react";
 import { Input } from "./ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -12,6 +18,7 @@ import {
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 import { useTableActions } from "@/hooks/useTableActions";
+import useNationalities from "@/hooks/useNationalities";
 
 export interface PlayerFormData {
   id: number;
@@ -32,6 +39,7 @@ export interface FormRef {
 }
 function PlayerEditForm({ data }: PlayerEditFormProp, ref: Ref<FormRef>) {
   const [formData, setFormData] = useState<PlayerFormData | undefined>(data);
+  const { nationalities } = useNationalities();
 
   const { updatePlayer } = useTableActions();
   const handleChange = (e: any) => {
@@ -92,16 +100,6 @@ function PlayerEditForm({ data }: PlayerEditFormProp, ref: Ref<FormRef>) {
       </div>
 
       <div className="flex flex-col gap-4">
-        <Label htmlFor="nationality">Nationality</Label>
-        <Input
-          type="text"
-          id="nationality"
-          value={formData?.nationality}
-          onChange={handleChange}
-          className="bg-Appbackground"
-        />
-      </div>
-      {/* <div>
         <Label>Nationality</Label>
         <Select
           onValueChange={(v) =>
@@ -110,21 +108,18 @@ function PlayerEditForm({ data }: PlayerEditFormProp, ref: Ref<FormRef>) {
           value={formData?.nationality}
           name="nationality"
         >
-          <SelectTrigger className="w-[180px]  bg-Appbackground text-white">
+          <SelectTrigger className=" bg-Appbackground text-white">
             <SelectValue />
           </SelectTrigger>
           <SelectContent className="bg-Appbackground text-white">
-            {countryOptions.map((data) => (
-              <SelectItem
-                value={`${data.label[0] + data.label.slice(1).toLowerCase()}`}
-                key={data.value}
-              >
-                {data.label}
+            {nationalities.map((nationality, i) => (
+              <SelectItem value={nationality} key={nationality}>
+                {nationality}
               </SelectItem>
             ))}
           </SelectContent>
         </Select>
-      </div> */}
+      </div>
       <div className="flex flex-col gap-4">
         <Label>Position</Label>
         <Select
@@ -137,7 +132,7 @@ function PlayerEditForm({ data }: PlayerEditFormProp, ref: Ref<FormRef>) {
           <SelectTrigger className=" bg-Appbackground text-white">
             <SelectValue />
           </SelectTrigger>
-          <SelectContent className="bg-Appbackground">
+          <SelectContent className="bg-Appbackground text-white">
             <SelectItem value="Goalkeeper">Goalkeeper</SelectItem>
             <SelectItem value="Defender">Defender</SelectItem>
             <SelectItem value="Midfielder">MidFielder</SelectItem>
