@@ -63,13 +63,13 @@ export default function TeamName({ title }: TeamNameProps) {
       <h3 className=" text-Appprimary text-xs">{title}</h3>
 
       <div
-        className="text-white flex items-center gap-1 text-base"
+        className="text-white flex items-center gap-1 text-base "
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
         <input
           ref={inputRef}
-          className="bg-Appbackground w-min"
+          className="bg-Appbackground  max-w-fit"
           value={teamName}
           disabled={!isEditing}
           onChange={handelChange}

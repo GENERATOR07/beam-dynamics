@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import CSVReader from "react-csv-reader";
+import React, { useState } from "react";
+
 import {
   Dialog,
   DialogClose,

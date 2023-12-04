@@ -9,7 +9,7 @@ export const ROSTER_TABLE_HEADERS: ColumnDef<PlayerInfo>[] = [
     accessorKey: "playerName",
     cell: ({ row }) => {
       return (
-        <div className="flex justify-around items-center text-xs">
+        <div className="flex justify-start gap-2 items-center ">
           <span>
             <Image
               className="rounded-full "

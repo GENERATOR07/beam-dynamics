@@ -10,7 +10,7 @@ import { NationalityContextProvider } from "@/context/nationality-context";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Bean dynamics",
+  title: "Beam dynamics",
   description: "team managment app",
 };
 

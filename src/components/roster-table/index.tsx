@@ -36,8 +36,8 @@ export function RosterTable<TData, TValue>({
 
   return (
     <>
-      <div className="rounded-md border overflow-y-scroll h-full">
-        <Table className="bg-[#2D2D2D] ">
+      <div className="rounded-md border overflow-y-scroll  h-full">
+        <Table className="bg-[#2D2D2D]  ">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
@@ -64,7 +64,7 @@ export function RosterTable<TData, TValue>({
                   data-state={row.getIsSelected() && "selected"}
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
+                    <TableCell key={cell.id} className="text-sm">
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()
