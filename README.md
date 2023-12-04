@@ -20,17 +20,30 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+## Shad CN UI
 
-To learn more about Next.js, take a look at the following resources:
+This project makes use of the [Shad CN UI](https://shad-cn-ui-library.com) component library for building the user interface. Shad CN UI provides a set of pre-designed and customizable React components that enhance the visual appeal and user experience of the application.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## State Management
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+This project leverages a combination of React Context, custom hooks, and a reducer for efficient state management. This approach offers a scalable and organized way to handle the application state.
 
-## Deploy on Vercel
+### React Context
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+[React Context](https://reactjs.org/docs/context.html) is employed to share state across components without the need for prop drilling. It establishes a global state accessible to components deep within the component tree.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Custom Hooks
+
+Custom hooks encapsulate logic, providing a clean interface for components to interact with the application state. This promotes the reuse of logic across different parts of the application.
+
+### Reducer
+
+A [reducer](https://reactjs.org/docs/hooks-reference.html#usereducer) function is used to manage state transitions in a predictable manner. It centralizes state logic and actions, simplifying the understanding of the application's state changes.
+
+By utilizing these techniques, the project ensures a structured and maintainable state management solution.
+
+## Demo
+
+Explore a live demo of this project [here](https://beam-dynamics.vercel.app). The demo provides a hands-on experience with the features and functionality of the application.
+
+Feel free to interact with the demo and see the project in action!
