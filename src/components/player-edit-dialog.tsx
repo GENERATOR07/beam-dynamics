@@ -32,13 +32,12 @@ export default function PlayerEditDialog({ id }: EditDialogProps) {
         </span>
         <PlayerEditForm ref={formRef} data={formData} />
         <DialogClose className="relative left-40">
-          <Button
-            variant="outline"
-            className="bg-Appprimary "
+          <div
+            className="bg-Appprimary  border-[#494949] border-[1px] w-[114px] h-[44px] rounded-[8px] text-sm flex justify-center items-center relative left-40"
             onClick={handleSubmit}
           >
             Edit Player
-          </Button>
+          </div>
         </DialogClose>
       </DialogContent>
     </Dialog>

@@ -25,22 +25,22 @@ export default function Search({ onSearch, onClear }: SearchProps) {
     onClear();
   };
   return (
-    <div className=" w-[250px] flex gap-2   rounded-md relative">
-      <span className="text-xs absolute left-2 top-[14px]">
+    <div className=" w-[250px] flex gap-2  border-[#494949] border-[1px] rounded-[8px] relative text-sm">
+      <span className=" absolute left-2 top-[14px]">
         <IoMdSearch color="white" size={16} />
       </span>
 
       <input
-        placeholder="find Player"
+        placeholder="Find Player"
         value={search}
         onChange={(event) => setSearch(event.target.value)}
-        className="max-w-sm bg-Appbackground text-white border-none border-0 h-full w-full text-xs pl-8 "
+        className="max-w-sm bg-Appbackground text-white border-none border-0 h-full w-full  pl-8 "
         onKeyDown={handleKeyPress}
       ></input>
       {search === "" ? null : searched ? (
         <button
           onClick={handleClear}
-          className="text-xs absolute right-4 top-3 text-white"
+          className=" absolute right-4 top-3 text-white"
         >
           {" "}
           x

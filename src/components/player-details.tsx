@@ -14,12 +14,12 @@ export default function PlayerDetails({ selectedPlayer }: PlayerDetailsProps) {
             className=" h-1/2 bg-contain bg-no-repeat bg-center flex flex-col justify-between p-4"
             style={{ backgroundImage: `url(${selectedPlayer?.playerImage})` }}
           >
-            <div className="text-Appprimary relative">
-              <span className="text-xl aboslute ">
+            <div className="text-Appprimary relative w-[40px] h-[100px]">
+              <span className=" font-[600px] leading-[100px] text-[110px] opacity-25 ">
                 {" "}
                 {selectedPlayer?.jerseyNumber}
               </span>
-              <span className="text-6xl  font-medium ">
+              <span className="font-[600px] leading-[62px] text-[42px] absolute top-6 left-4">
                 {" "}
                 {selectedPlayer?.jerseyNumber}
               </span>

@@ -33,8 +33,10 @@ export default function PlayerDeleteDialog({ id }: DeleteDialogProps) {
           <DialogDescription>This action cannot be undone.</DialogDescription>
         </DialogHeader>
         <DialogFooter className="flex justify-end">
-          <DialogClose>
-            <Button>Cancel</Button>
+          <DialogClose className="flex gap-2">
+            <Button className="bg-Appbackground border-[#494949] border-[1px]">
+              Cancel
+            </Button>
             <Button onClick={handleDelete} className="bg-[#D23131]">
               Delete
             </Button>

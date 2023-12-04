@@ -39,9 +39,13 @@ export default function RosterPage() {
           <div className="flex gap-1">
             <Search onSearch={searchTable} onClear={clearSearch} />
 
-            <Button variant="outline" className="bg-Appprimary text-white">
+            <div
+              className={`${
+                roster ? "" : "bg-Appprimary"
+              } text-white w-[132px] border-[#494949] border-[1px] h-[44px] rounded-[8px] flex items-center justify-center text-sm`}
+            >
               <TeamImporterDialog />
-            </Button>
+            </div>
           </div>
         </div>
         {tableData ? (

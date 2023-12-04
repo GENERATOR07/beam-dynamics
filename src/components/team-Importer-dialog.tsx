@@ -99,7 +99,9 @@ export default function TeamImporterDialog() {
         <DialogFooter className="">
           <DialogClose asChild>
             <Button
-              className="bg-Appbackground text-white p-2 absolute bottom-3 "
+              className={`${
+                fileSummary ? "bg-Appprimary" : "bg-Appbackground"
+              } text-white p-2 absolute bottom-3 `}
               onClick={handelImport}
               variant="outline"
               disabled={!fileSummary}
