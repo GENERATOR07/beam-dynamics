@@ -1,10 +1,4 @@
-import {
-  useState,
-  forwardRef,
-  Ref,
-  useImperativeHandle,
-  useEffect,
-} from "react";
+import { useState, forwardRef, Ref, useImperativeHandle } from "react";
 import { Input } from "./ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -32,12 +26,16 @@ export interface PlayerFormData {
 }
 interface PlayerEditFormProp {
   data: PlayerFormData;
+  setChanges: () => void;
 }
 
 export interface FormRef {
   submit: () => void;
 }
-function PlayerEditForm({ data }: PlayerEditFormProp, ref: Ref<FormRef>) {
+function PlayerEditForm(
+  { data, setChanges }: PlayerEditFormProp,
+  ref: Ref<FormRef>
+) {
   const [formData, setFormData] = useState<PlayerFormData | undefined>(data);
   const { nationalities } = useNationalities();
 
@@ -46,6 +44,7 @@ function PlayerEditForm({ data }: PlayerEditFormProp, ref: Ref<FormRef>) {
     const key = e.target.id;
     const value = e.target.value;
     setFormData({ ...(formData as PlayerFormData), [key]: value });
+    setChanges();
   };
 
   const submit = () => {
@@ -102,9 +101,10 @@ function PlayerEditForm({ data }: PlayerEditFormProp, ref: Ref<FormRef>) {
       <div className="flex flex-col gap-4">
         <Label>Nationality</Label>
         <Select
-          onValueChange={(v) =>
-            setFormData({ ...(formData as PlayerFormData), nationality: v })
-          }
+          onValueChange={(v) => {
+            setFormData({ ...(formData as PlayerFormData), nationality: v });
+            setChanges();
+          }}
           value={formData?.nationality}
           name="nationality"
         >
@@ -123,9 +123,10 @@ function PlayerEditForm({ data }: PlayerEditFormProp, ref: Ref<FormRef>) {
       <div className="flex flex-col gap-4">
         <Label>Position</Label>
         <Select
-          onValueChange={(v) =>
-            setFormData({ ...(formData as PlayerFormData), position: v })
-          }
+          onValueChange={(v) => {
+            setFormData({ ...(formData as PlayerFormData), position: v });
+            setChanges();
+          }}
           value={formData?.position}
           name="position"
         >
@@ -147,11 +148,12 @@ function PlayerEditForm({ data }: PlayerEditFormProp, ref: Ref<FormRef>) {
           id="starter"
           onValueChange={(v) => {
             setFormData({ ...(formData as PlayerFormData), starter: v });
+            setChanges();
           }}
-          className="flex gap-1"
+          className="flex gap-1 "
           value={formData?.starter}
         >
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2 ">
             <RadioGroupItem value="No" id="No" className="bg-Appprimary" />
             <Label htmlFor="No">No</Label>
           </div>
